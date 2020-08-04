@@ -5,7 +5,7 @@ list_task = []
 data_id = 0
 # create flask app
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret'
+app.config['SECRET_KEY'] = 'secret!Key'
 
 #Creating the socket object
 socketio = SocketIO(app,cors_allowed_origins="*")
