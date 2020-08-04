@@ -1,0 +1,71 @@
+<html>
+		<head>
+
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+				<!-- Client side js for socketio package -->
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+				<title>Simple TODO App</title>
+		</head>
+
+
+
+		<body>
+				<script type="text/javascript">
+						$(document).ready(function(){
+								//Creating the instance of the socket
+								var socket = io.connect('http://127.0.0.1:5000');
+								socket.on('connect',function(){
+
+										console.log("Connected!");
+								});
+
+								//Adding the new tasks in real time via socket message approval
+								socket.on('message',function(task){
+										$("#tasks").append('<li class="list-group-item d-flex justify-content-between align-items-center">'+task+'</li>');		
+								});
+
+								//Action to be taken after submitting the new task
+								$("#submitBtn").on('click',function(){
+										socket.send($('#myTask').val());
+										$("#myTask").val("");
+								});
+
+						});
+				</script>
+
+				<div class="container">
+						<div class="jumbotron jumbotron-fluid">
+								<div class="container">
+										<h1 class="display-4">TO DO APP</h1>
+								</div>
+						</div>
+
+						<div class="row">
+								<div class="col-sm-6">
+										<input type="text" id="myTask" placeholder="What's next thing to do?">
+										<button id="submitBtn" class="btn btn-success"><i class="fa fa-plus"></i></button>
+								</div>
+
+								<div class="col-sm-6">
+										<ul id="tasks" class="list-group"></ul>
+								</div>
+
+						</div>
+				</div>
+
+				</script>
+				<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+		</body>
+</html>
