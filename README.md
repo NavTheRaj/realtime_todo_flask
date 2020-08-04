@@ -1,4 +1,4 @@
-# realtime_todo_flask
+# TODO APPLICATION IN FLASK WITH REALTIME FLASK WEBSOCKET
 * Install the requirements file by pip install -r requirements.txt
 * Open the app.py file in console
 * Now open the index.html file from the two browser 
